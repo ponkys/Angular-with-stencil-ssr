@@ -1,0 +1,1 @@
+System.register(["./p-08c51198.system.js"],function(t,e){"use strict";var s,n;return{setters:[function(t){s=t.a;n=t.b}],execute:function(){s().then(function(t){return n([["p-uxagjmkk.system",[[1,"of-component",{first:[1],middle:[1],last:[1]}]]]],{resourcesUrl:t})})}}});
