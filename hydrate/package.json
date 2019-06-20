@@ -1,0 +1,5 @@
+{
+  "name": "@ponkys/consumer-web-components-test/hydrate",
+  "main": "index.js",
+  "types": "index.d.ts"
+}

@@ -9,6 +9,7 @@ module.exports = {
     // This is our Express server for Dynamic universal
     server: './server.ts'
   },
+  devtool: 'source-map',
   target: 'node',
   resolve: { extensions: ['.ts', '.js'] },
   optimization: {

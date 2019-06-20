@@ -11,7 +11,7 @@ import * as express from 'express';
 import { join } from 'path';
 
 // tests
-import { renderToString, hydrateDocument } from '@ponkys/consumer-web-components-test/dist/hydrate/index';
+import { renderToString, hydrateDocument } from './hydrate/index';
 import * as domino from 'domino';
 
 // Faster server renders w/ Prod mode (dev mode never needed)
