@@ -52,12 +52,15 @@ app.get('*', (req: express.Request, res: express.Response) => {
     } as RenderOptions,
     async (err: any, html) => {
       try {
-        // const fakeWindow = domino.createWindow(html);
-        // const doc = fakeWindow.document;
-        // console.log('default view: ', doc.defaultView);
-        // const a = await hydrateDocument(doc);
-        // console.log('😎', a);
-        res.send(html);
+        // not working
+        // using domino to pass a document to hydrateDocument
+        const fakeWindow = domino.createWindow(html);
+        const doc = fakeWindow.document;
+        const a = await hydrateDocument(doc);
+        if (a.diagnostics[0].level === 'error') {
+          throw new Error(`Error: ${a.diagnostics[0].header}`);
+        }
+        res.send(a);
       } catch (error) {
         console.log(error);
         res.send(html);
