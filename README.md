@@ -9,8 +9,24 @@ npm install
 npm run build:ssr && npm run serve:ssr
 ```
 
-## Question: how to render a stencil component in server-side
+## Context
 
-Stencil component is working properly with javascript but not without. When inspecting the html string returned by the angular universal engine the component is visible but with no content inside.
+this project is consuming stencil web components from `@ponkys/consumer-web-components-test` dependency declared in package json. This includes the `hydrate` folder in the dist (I manually pasted it there). In a stencil project add the following object to the outputTargets array in `stencil.config.js`:
 
-there are some commented options that I have tried with no success in `server.ts`. The hydrate folder is included in the npm package to have access to hydrateDocument and renderToString methods.
+```JavaScript
+  {
+    type: 'dist-hydrate-script'
+  }
+```
+
+this hydrate folder exposes `renderToString` and `hydrateDocument` methods that are useful for ssr.
+
+## IMPORTANT PATCH
+
+file `index.js` from `node_modules/@ponkys/consumer-web-components-test/dist/hydrate/index.js` in line 19.
+
+```JavaScript
+  const filePath = path.resolve(process.cwd(), `node_modules/@ponkys/consumer-web-components-test/dist/hydrate/app.js`);
+```
+
+It seems that Angular universal has wrong node `__dirname` set.
